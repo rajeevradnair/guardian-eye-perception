@@ -14,13 +14,13 @@ A **Python-based microservice** built with **FastAPI** wraps **YOLO11** and expo
 This makes the model easy to integrate with other services while keeping deployment lightweight and modular.
 
 ### Orchestration Layer
-The service runs on **Amazon EKS (Elastic Kubernetes Service)**, where Kubernetes manages scaling, recovery, and deployment lifecycle. It uses:
+The service runs on **Amazon EKS**, where Kubernetes manages scaling, recovery, and deployment lifecycle. It uses:
 
 - **Helm** for package management and repeatable deployment
 - **Liveness probes** to detect stalled or unhealthy inference processes
 - **Readiness probes** to ensure the model is ready before traffic is routed to it
 
-### Infrastructure as Code (IaC)
+### Infrastructure as Code
 The entire cloud environment is provisioned through **Terraform**, making the platform fully reproducible and easier to manage across environments. Managed resources include:
 
 - VPC
