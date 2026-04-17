@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guardian-perception
+  labels:
+    app: perception
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: perception
+  template:
+    metadata:
+      labels:
+        app: perception
+    spec:
+      serviceAccountName: guardian-perception-sa
+      containers:
+      - name: perception-engine
+        image: 280480953008.dkr.ecr.us-east-1.amazonaws.com/guardian-perception:latest
+        ports:
+        - containerPort: 8000
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30  # Give YOLO time to initialize
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 15  # Don't send traffic until /health is 200 OK
+          periodSeconds: 10
+          
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "1.5Gi"
+          limits:
+            cpu: "1"
+            memory: "2Gi"
