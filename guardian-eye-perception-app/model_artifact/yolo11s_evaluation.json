@@ -1,0 +1,1 @@
+{"detection_metrics": {"mAP50-95": {"value": 0.7454799221910985, "standard_deviation": "NaN"}, "mAP50": {"value": 0.93494708994709, "standard_deviation": "NaN"}, "precision": {"value": 0.9345548426354019, "standard_deviation": "NaN"}}}
